@@ -1,0 +1,227 @@
+/* 全局样式 */
+* {
+    padding: 0;
+    margin: 0; /* 清除默认内外边距 */
+}
+
+div {
+    cursor: default; /* 防止光标移动到文本上时改变为text样式 */
+}
+
+ul {
+    list-style: none; /* 取消列表编号 */
+}
+
+a {
+    text-decoration: none; /* 取消链接下划线 */
+}
+
+img {
+    border: 0;
+    vertical-align: middle; /* 取消图片底部空白 */
+}
+
+
+
+/* 导航栏样式 */
+/* 导航栏 */
+.nav {
+    width: 100%;
+    height: 50px;
+}
+
+.logo {
+    float: left;
+    width: 300px;
+    height: 100%;
+    text-align: center;
+    line-height: 50px;
+}
+
+.user {
+    float: right;
+    width: 34px;
+    height: 34px;
+    border: 3px solid transparent;
+    margin: 5px 10px 5px 5px;
+    border-radius: 20px;
+    text-align: center;
+    line-height: 34px;
+}
+.user:hover {
+    background-color: #f8f8f8;
+    border: 3px solid #ccc;    
+}
+
+.selection {
+    float: right;
+    position: relative;
+    width: 70px;
+    height: 30px;
+    margin: 10px 5px 10px 5px;
+    border-radius: 8px;
+    text-align: center;
+    line-height: 30px;
+}
+.selection:hover {
+    background-color: #f0f0f0;    
+}
+
+/* 下拉菜单：年份 */
+#yearSubMenu {
+    display: none;
+    position: absolute;
+    box-sizing: border-box;
+    width: 180px;
+    right: 0;
+    top: 30px;
+    padding: 5px;
+    border-radius: 8px;
+    background-color: #fcfcfc;
+    box-shadow: -3px 3px 3px #888;
+    text-align: left;
+    z-index: 2;
+}
+
+.yearBox {
+    display: inline-block;
+    width: 80px;
+    height: 25px;
+    box-sizing: border-box;
+    padding: 5px 0 5px 10px;
+    line-height: 15px;
+    border-radius: 5px;
+    text-align: left;
+}
+.yearBox:hover {
+    background-color: #f0f0f0;
+}
+
+/* 下拉菜单：年份 */
+#viewSubMenu {
+    display: none;
+    position: absolute;
+    box-sizing: border-box;
+    width: 180px;
+    right: 0;
+    top: 30px;
+    padding: 5px;
+    border-radius: 8px;
+    background-color: #fcfcfc;
+    box-shadow: -3px 3px 3px #888;
+    text-align: left;
+    z-index: 2;
+}
+
+.spatioDisButton {
+    display: block;
+    width: 100%;
+    height: 25px;
+    box-sizing: border-box;
+    margin-top: 5px;
+    padding: 5px 0 5px 10px;
+    line-height: 15px;
+    border: none;
+    border-radius: 5px;
+    text-align: left;
+    background-color: #fff;
+}
+.spatioDisButton:hover {
+    background-color: #f0f0f0;
+}
+
+
+
+
+
+/* 控制栏样式 */
+/* 控制栏 */
+.explorer {
+    position: absolute;
+    top: 50px;
+    bottom: 0;
+    width: 320px;
+}
+
+/* 图层、控制台 */
+#layerExplorer {
+    height: 40%;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-bottom: 0;   
+}
+
+#console {
+    height: 60%;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-bottom: 0;   
+}
+
+/* 图层、控制台标识文本 */
+.explorerText {
+    width: 100%;
+    height: 20px;
+    line-height: 20px;
+    background-color: #f0f0f0;
+}
+
+/* 图层样式 */
+.layers {
+    width: 100%;
+    height: 30px;
+    box-sizing: border-box;
+    margin: 5px 0 5px 0;
+    padding-left: 10px;
+    line-height: 30px;
+    border-radius: 8px;
+}
+.layers:hover {
+    background-color: #f0f0f0;
+}
+
+/* 表格样式 */
+.table1 {
+    width: 100%;
+    margin-top: 5px;
+    padding: 15px 10px 20px 10px;
+    background-color: #fcfcfc;
+    line-height: 25px;
+    font-size: 10pt;
+}
+
+/* 折线图样式 */
+.lineGraph {
+    /* width: 100%; */
+    /* height: 250px; */
+    background-color: #fcfcfc;
+}
+
+
+
+
+/* 地图样式 */
+/* 地图窗口 */
+.mapWindow {
+    position: absolute;
+    top: 50px;
+    left: 320px;
+    bottom: 0;
+    right: 0;
+}
+
+/* 坐标窗口 */
+#mouseCoordinate {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 400px;
+    height: 16px;
+    line-height: 16px;
+    background: transparent;
+}
+

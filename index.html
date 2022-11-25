@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carbon Emission Visual Platform</title>
+    <!-- CSS路径 -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- vue路径 -->
+    <script src="vue/vue.global.js"></script>
+
+    <!-- ol路径 -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/ol@v7.1.0/dist/ol.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@v7.1.0/ol.css"> -->
+    <script src="ol/ol.js"></script>
+    <link rel="stylesheet" href="ol/ol.css">
+    
+    <!-- 其他外部资源 -->
+    <script src="data/CE_province_1997-2019.js"></script>
+    <script src="data/GDP_province_2002-2021.js"></script>
+    <script src="components/xlsx.full.min.js"></script>
+
+</head>
+
+<body>
+    <!-- 导航栏 -->
+    <div class="nav">
+        <div class="logo">
+            碳排放数据可视化平台       
+        </div>
+
+        <div class="user">
+            iD
+        </div>
+        
+        <div class="selection" id="yearMenu">
+            年 份
+            <!-- 子菜单 -->
+            <div id="yearSubMenu">
+                <label for="y2019"><div class="yearBox">
+                    <input type="radio" name="yearInputBox" id="y2019" value="2019" checked="checked" onclick="setYear(this)"> 2019
+                </div></label>
+                <label for="y2018"><div class="yearBox">
+                    <input type="radio" name="yearInputBox" id="y2018" value="2018" onclick="setYear(this)"> 2018
+                </div></label>
+                <label for="y2017"><div class="yearBox">
+                    <input type="radio" name="yearInputBox" id="y2017" value="2017" onclick="setYear(this)"> 2017
+                </div></label>
+                <label for="y2016"><div class="yearBox">
+                    <input type="radio" name="yearInputBox" id="y2016" value="2016" onclick="setYear(this)"> 2016
+                </div></label>
+                <label for="y2015"><div class="yearBox">
+                    <input type="radio" name="yearInputBox" id="y2015" value="2015" onclick="setYear(this)"> 2015
+                </div></label>
+                <label for="y2014"><div class="yearBox">
+                    <input type="radio" name="yearInputBox" id="y2014" value="2014" onclick="setYear(this)"> 2014
+                </div></label>
+                <label for="y2013"><div class="yearBox">
+                    <input type="radio" name="yearInputBox" id="y2013" value="2013" onclick="setYear(this)"> 2013
+                </div></label>
+                <label for="y2012"><div class="yearBox">
+                    <input type="radio" name="yearInputBox" id="y2012" value="2012" onclick="setYear(this)"> 2012
+                </div></label>
+                <label for="y2011"><div class="yearBox">
+                    <input type="radio" name="yearInputBox" id="y2011" value="2011" onclick="setYear(this)"> 2011
+                </div></label>
+                <label for="y2010"><div class="yearBox">
+                    <input type="radio" name="yearInputBox" id="y2010" value="2010" onclick="setYear(this)"> 2010
+                </div></label>
+                <label for="y2009"><div class="yearBox">
+                    <input type="radio" name="yearInputBox" id="y2009" value="2009" onclick="setYear(this)"> 2009
+                </div></label>
+                <label for="y2008"><div class="yearBox">
+                    <input type="radio" name="yearInputBox" id="y2008" value="2008" onclick="setYear(this)"> 2008
+                </div></label>
+                <label for="y2007"><div class="yearBox">
+                    <input type="radio" name="yearInputBox" id="y2007" value="2007" onclick="setYear(this)"> 2007
+                </div></label>
+                <label for="y2006"><div class="yearBox">
+                    <input type="radio" name="yearInputBox" id="y2006" value="2006" onclick="setYear(this)"> 2006
+                </div></label>
+                <label for="y2005"><div class="yearBox">
+                    <input type="radio" name="yearInputBox" id="y2005" value="2005" onclick="setYear(this)"> 2005
+                </div></label>
+                <label for="y2004"><div class="yearBox">
+                    <input type="radio" name="yearInputBox" id="y2004" value="2004" onclick="setYear(this)"> 2004
+                </div></label>
+                <label for="y2003"><div class="yearBox">
+                    <input type="radio" name="yearInputBox" id="y2003" value="2003" onclick="setYear(this)"> 2003
+                </div></label>
+                <label for="y2002"><div class="yearBox">
+                    <input type="radio" name="yearInputBox" id="y2002" value="2002" onclick="setYear(this)"> 2002
+                </div></label>
+            </div>
+
+        </div>
+
+        <div class="selection" id="viewMenu">
+            视 图
+            <!-- 子菜单 -->
+            <div id="viewSubMenu">
+                <button class="spatioDisButton" id="spatioDisButton" onclick="spatioDistri()">
+                    显示空间分布图
+                </button>
+                <button class="spatioDisButton" id="delSpatioDisButton" onclick="delSpatioDistri()">
+                    移除空间分布图
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 控制栏 -->
+    <div class="explorer">
+        <!-- 图层 -->
+        <div id="layerExplorer">
+            <div class="explorerText">Layer</div>
+            
+            <!-- OSM地图 -->
+            <label for="lOSM"><div class="layers">
+                <input type="checkbox" value="lOSM" id="lOSM" checked="checked" onclick="layerVision(this, 0)"> OpenStreetMap
+            </div></label>
+
+            <!-- 行政区边界 -->
+            <label for="lAdmin"><div class="layers">
+                <input type="checkbox" value="lAdmin" id="lAdmin" checked="checked" onclick="layerVision(this, 1)"> 行政区边界
+            </div></label>
+
+        </div>
+        
+        <!-- 控制台 -->
+        <div id="console">
+            <div class="explorerText">Console</div>
+            <table id="table1"></table>
+            <canvas id="lineGraph"></canvas>
+        </div>        
+    </div>
+    
+    <!-- 导航栏和控制栏事件 -->
+    <script src="components/control.js"></script>
+
+    <!-- 地图窗口 -->
+    <div class="mapWindow" id="mapW">
+        <script src="components/basemap.js"></script>
+        <script src="components/algorithm.js"></script>
+
+        <!-- 当前坐标 -->
+        <div id="mouseCoordinate"></div>
+    </div>
+
+</body>
+
+</html>
